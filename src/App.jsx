@@ -10,39 +10,26 @@ import styled from "styled-components";
 import { populateTabData } from "./store/actions";
 
 function App() {
-  const dispatch = useDispatch();
-  const isHamburgerIconVisible = useSelector(
-    (state) => state.isHamburgerIconVisible
-  );
+    const dispatch = useDispatch();
+    const isHamburgerIconVisible = useSelector(
+        (state) => state.isHamburgerIconVisible
+    );
 
-  useEffect(() => {
-    dispatch(populateTabData(db.newsoutlets));
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(populateTabData(db.newsoutlets));
+    }, [dispatch]);
 
-  return (
-    <Wrapper>
-      <div className="App">
-        <div className="header">
-          <Header />
-        </div>
-        <div className="content-layout">
-        <div
-            className={`sidebar ${isHamburgerIconVisible ? "hidden" : ""}
-            `}
-          >
-            <Sidebar />
-          </div>
-          <div
-            className={`mainlayout ${
-              isHamburgerIconVisible ? "expanded" : ""
-            }`}
-          >
-            <MainLayout />
-          </div>
-        </div>
-      </div>
-    </Wrapper>
-  );
+    return (
+        <Wrapper>
+            <div className="App">
+                <div className="header"><Header /></div>
+                <div className="content-layout">
+                    <div className={`sidebar ${isHamburgerIconVisible ? "hidden" : ""}`}><Sidebar /></div>
+                    <div className={`mainlayout ${isHamburgerIconVisible ? "expanded" : ""}`}><MainLayout /></div>
+                </div>
+            </div>
+        </Wrapper>
+    );
 }
 
 export default App;

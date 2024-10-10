@@ -10,7 +10,7 @@
 
 .hamburger-icon {
   font-size: 1.7rem;
-  margin-right: 50px;
+  margin-right: 20px;
   cursor: pointer;
 }
 
@@ -27,16 +27,34 @@
   padding-right: 20px;
 }
 
-.choose-source-container {
+/* .choose-source-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  border: 1px solid #fff;
-  border-radius: 20px;
-  margin: 0 50px 0 30%;
-  padding: 0 5px;
-  cursor: pointer;
+} */
+
+.choose-source-container {
+    display: flex;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    margin: 0 50px 0 30%;
+    padding: 0 5px;
+    justify-content: space-around; /* Distribute the items evenly */
+    margin: 20px 0;
 }
+
+.menu-item {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: 1px solid transparent;
+    transition: 0.3s ease;
+
+    &:hover {
+        border-bottom: 2px solid #000; /* Add underline on hover */
+    }
+}
+
+
 
 select {
   width: 10rem;

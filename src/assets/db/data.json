@@ -1,26 +1,26 @@
 {
     "newsoutlets": [
         {
-            "name": "abc-news",
-            "title": "ABC News",
+            "name": "python",
+            "title": "Python",
             "image": "abcnews_pearl_stacked",
             "extension": ".png"
         },
         {
             "name": "al-jazeera-english",
-            "title": "AlJazeera English",
+            "title": "Java",
             "image": "aljazeraenglish",
             "extension": ".png"
         },
         {
             "name": "associated-press",
-            "title": "Associated Press",
+            "title": "AI",
             "image": "Associated-Press",
             "extension": ".png"
         },
         {
             "name": "bbc-news",
-            "title": "BBC News",
+            "title": "React",
             "image": "bbcnews",
             "extension": ".png"
         },
