@@ -7,9 +7,25 @@ import {
     handleIsLoading,
     handleActiveNewsSource,
     searchTabData,
-    resetTabData,
+    resetTabData, populateTabData,
 } from "../../store/actions";
 import "./Sidebar.scss";
+
+const staticCategories = {
+    IT: [
+        { name: "AI Research", title: "AI Research Overview" },
+        { name: "Machine Learning", title: "Introduction to ML" }
+    ],
+    MBA: [
+        { name: "Finance", title: "Finance Basics" },
+        { name: "Marketing", title: "Marketing Strategies" }
+    ],
+    Literature: [
+        { name: "Poetry", title: "Famous Poetry" },
+        { name: "Novels", title: "Best Classic Novels" }
+    ],
+    // Add more static categories if needed
+};
 
 function Sidebar() {
     const dispatch = useDispatch();
@@ -18,23 +34,14 @@ function Sidebar() {
     );
     const [searchText, setSearchText] = useState("");
 
-    useEffect(() => {
-        const nUrl = `https://newsapi.org/v2/top-headlines?${url}=${newsSource}&apiKey=${api_key}`;
-
-        axios.post(`${proxy_url}/getNews`, { url: nUrl }).then((res) => {
-            dispatch(handleIsLoading(false));
-            dispatch(handleActiveNewsSource(res.data.articles));
-        });
-    }, [dispatch, url, proxy_url, api_key, newsSource]);
-
-    const handleChangeNewsSource = async (newsSource) => {
-        await dispatch(handleNewsSource(newsSource));
-        await dispatch(handleIsLoading(true));
-        const nUrl = `https://newsapi.org/v2/top-headlines?${url}=${newsSource}&apiKey=${api_key}`;
-        axios.post(`${proxy_url}/getNews`, { url: nUrl }).then((res) => {
-            dispatch(handleIsLoading(false));
-            dispatch(handleActiveNewsSource(res.data.articles));
-        });
+    const handleChangeNewsSource = (selectedCategory) => {
+        const staticData = staticCategories[selectedCategory]; // Fetch the static data
+        if (staticData) {
+            dispatch(handleNewsSource(selectedCategory)); // Update selected source in Redux
+            dispatch(populateTabData(staticData)); // Populate the tab data for the selected category
+        } else {
+            console.error(`No data found for category: ${selectedCategory}`);
+        }
     };
 
     const handleSearch = async (event) => {

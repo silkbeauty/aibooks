@@ -12,16 +12,17 @@ const ANewsItem = (obj) => {
 const StaticNewsItem = () => {
     const staticNews = [
         {
-            title: "Nobel Prize in Physics Awarded  for their contributions to machine learning  for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning",
+            title: "1 Nobel Prize in Physics Awarded  for their contributions to machine learning  for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning",
             content: "John Hopfield and Geoffrey Hinton were awarded the Nobel Prize for their contributions to machine learning. for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning",
             url: "https://example.com/nobel-prize",
             urlToImage: "/image.png"
 
         },
         {
-            title: "US Marshals Arrest Man",
-            description: "The US Marshals have arrested a man who allegedly shot somebody in the head and set them on fire.",
-            image: "/assets/images/arrest.jpg",
+            title: "2  machine learning",
+            content: "John Hopfield and Geoffrey Hinton were awarded the Nobel Prize for their contributions to machine learning. for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning for their contributions to machine learning",
+            url: "https://example.com/nobel-prize",
+            urlToImage: "/image.png"
         },
     ];
 

@@ -1,39 +1,23 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import db from "../../assets/db/data.json";
 import {
     toggleHamburgerIconVisibility,
     populateTabData,
-    changeUrl,
-    handleNewsSource,
-    handleIsLoading,
-    handleActiveNewsSource,
 } from "../../store/actions";
 import "./Header.css";
 
 function Header() {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
-    const { url, proxy_url, api_key, newsSource, isHamburgerIconVisible } = state;
+    const { isHamburgerIconVisible } = state;
 
     function handleHamburgerIconClick() {
         dispatch(toggleHamburgerIconVisibility(!isHamburgerIconVisible));
     }
 
-    const handleSelectChange = async (event) => {
-        let selectedSource = event.target.value;
-        let dUrl = selectedSource === "IT" ? "sources" : "country";
-        await dispatch(changeUrl(dUrl));
-        await dispatch(handleNewsSource(db[selectedSource][0].name));
-        await dispatch(populateTabData(db[selectedSource]));
-        await dispatch(handleIsLoading(true));
-        const nUrl = `https://newsapi.org/v2/top-headlines?${url}=${newsSource}&apiKey=${api_key}`;
-
-        axios.post(`${proxy_url}/getNews`, { url: nUrl }).then((res) => {
-            dispatch(handleIsLoading(false));
-            dispatch(handleActiveNewsSource(res.data.articles));
-        });
+    const handleSelectChange = (selectedSource) => {
+        const staticData = db[selectedSource];
+        dispatch(populateTabData(staticData));  // Sends the static data to Redux store
     };
 
     return (
@@ -44,17 +28,18 @@ function Header() {
             <span className="app-title">AI Books Hub</span>
             <div className="row-centered">
                 <div className="choose-source-container">
+                    <div className="menu-item" onClick={() => handleSelectChange("Literature")}>Literature</div>
+                    <div className="menu-item" onClick={() => handleSelectChange("Textbooks")}>Textbooks</div>
+                    <div className="menu-item" onClick={() => handleSelectChange("MBA")}>MBA</div>
+                    <div className="menu-item" onClick={() => handleSelectChange("School")}>School</div>
+                    <div className="menu-item" onClick={() => handleSelectChange("Economy")}>Economy</div>
                     <div className="menu-item" onClick={() => handleSelectChange("IT")}>IT</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("countries")}>Literature</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("countries")}>Textbooks</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("categories")}>MBA</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("categories")}>School</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("categories")}>Economy</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("categories")}>History</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("categories")}>Arts</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("categories")}>Science</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("categories")}>Professional</div>
-                    <div className="menu-item" onClick={() => handleSelectChange("categories")}>Society</div>
+                    <div className="menu-item" onClick={() => handleSelectChange("History")}>History</div>
+                    <div className="menu-item" onClick={() => handleSelectChange("Arts")}>Arts</div>
+                    <div className="menu-item" onClick={() => handleSelectChange("Science")}>Science</div>
+                    <div className="menu-item" onClick={() => handleSelectChange("Professional")}>Professional</div>
+                    <div className="menu-item" onClick={() => handleSelectChange("Society")}>Society</div>
+
                 </div>
             </div>
         </div>
